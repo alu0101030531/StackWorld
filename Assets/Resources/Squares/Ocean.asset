@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee0e65fcbb8347d4d98a1e904920ba74, type: 3}
+  m_Name: Ocean
+  m_EditorClassIdentifier: 
+  m_AnimatedSprites:
+  - {fileID: 21300000, guid: c42d45b566b06064dbf967ddc2c6d275, type: 3}
+  - {fileID: 21300000, guid: 6ac549833e603674783cdfc31c76f2e5, type: 3}
+  m_MinSpeed: 1
+  m_MaxSpeed: 1
+  m_AnimationStartTime: 0
+  m_AnimationStartFrame: 0
+  m_TileColliderType: 0
+  m_TileAnimationFlags: 0
+  connections: 
+  tiles:
+  - {fileID: 11400000, guid: 06ab157f8f693354599f06a2467d4ebf, type: 2}
+  negative_affinity_tiles:
+  - {fileID: 11400000, guid: 960b059a8bf3a9c4a946acc47c43da5f, type: 2}
+  HelpMessage: Ocean tiles can't be next to forest tiles
