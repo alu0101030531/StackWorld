@@ -12,7 +12,7 @@ public class BgParallax : MonoBehaviour
         
     }
 
-    // Update is called once per frame
+    // The textureOffset is updated based on the distance to the camera and the scrollSpeed variable.
     void Update()
     {
         float speedFactor = scrollSpeed / backgrounds.Count;

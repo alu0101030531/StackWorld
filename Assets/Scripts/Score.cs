@@ -23,6 +23,7 @@ public class Score : MonoBehaviour
         GridManager.OnCalculateScore -= CalculateScore;
     }
 
+    // Count the negative affinity tiles
     float CalculateAffinity(List<WorldTile> adjacentTiles, WorldTile tile) {
         float negativeTiles = 0;
         foreach(WorldTile adjacentTile in adjacentTiles) {
@@ -35,6 +36,7 @@ public class Score : MonoBehaviour
         return negativeTiles;
     }
 
+    // Return a numeric score base on negative affinity tiles 
     float CalculateScore(List<WorldTile> adjacentTiles, WorldTile tile) {
         if (tile == null) {
             return 0f;

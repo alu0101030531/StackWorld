@@ -9,18 +9,21 @@ public class HelpSystem : MonoBehaviour
     public GameObject prefabHelpTextUI;
     private GameObject currentTextUI;
 
+    // We instantiate a TMP_text  to show the help messages to the player
     void Start()
     {
         GridManager.OnShowHelp += ShowHelp;
         currentTextUI = Instantiate(prefabHelpTextUI) as GameObject;
     }
 
+    // After showing the message we change the text after 3 seconds
     IEnumerator VanishHelp()
     {
         yield return new WaitForSeconds(3f);
         currentTextUI.GetComponent<TMP_Text>().text = ""; 
     }
 
+    // We get the help message from the tile
     private void ShowHelp(WorldTile tile) {
         StartCoroutine(VanishHelp());
         currentTextUI.transform.SetParent(canvas.transform);

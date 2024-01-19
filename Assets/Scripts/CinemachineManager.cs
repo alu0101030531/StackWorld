@@ -11,12 +11,14 @@ public class CinemachineManager : MonoBehaviour
     private float totalZoom = 0;
     private float maxZoom;
 
+    // We get the current size to use it when clamping the value
     void Start() {
         totalZoom = vcam.m_Lens.OrthographicSize;
         maxZoom = totalZoom;
 
     }
 
+    // We change the current orthographic size using the mouse wheel delta
     void Zoom() {
         float zoom = -(Input.mouseScrollDelta.y) * zoom_factor * Time.deltaTime;
         totalZoom += zoom;

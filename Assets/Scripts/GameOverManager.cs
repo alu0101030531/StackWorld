@@ -14,6 +14,7 @@ public class GameOverManager : MonoBehaviour
         
     }
 
+    // We load the game scene waiting a delay time to reproduce a sound
     private IEnumerator LoadScene(AudioSource audio, float delay)
     {
         audio.Play(0);

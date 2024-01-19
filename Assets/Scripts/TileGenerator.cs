@@ -38,10 +38,10 @@ public class TileGenerator : MonoBehaviour
     }
 
 
+    // We instantiate a cardBack prefab for each card of the deck
     private void InitializeDeck() {
         for (int tile = 0; tile < maxDeckSize; tile++) {
             GameObject instantiated_card = Instantiate(cardBack, new Vector3(initialCardPos.x, initialCardPos.y, initialCardPos.z), Quaternion.identity) as GameObject;
-            Debug.Log(instantiated_card);
             deck.Add(instantiated_card);
             instantiated_card.transform.SetParent(canvas.transform);
             initialCardPos.y += offset;
@@ -53,15 +53,19 @@ public class TileGenerator : MonoBehaviour
         GridManager.OnAddCard -= AddCard;
     }
 
+    // Generate a random card and add it to the next card in the UI
     private void GenerateNextCard() {
         nextCard = GenerateTile();
         nextCardSprite.GetComponent<Image>().sprite = nextCard.m_AnimatedSprites[0];
     }
 
+    // Update the deck size in the UI
     private void UpdateDeckSizeUI() {
         deckSizeUI.text = currentSize.ToString();
     }
 
+    // Return the current card and generate the next one, update the UI, we are using object pooling
+    // so we deactivate the last card in the UI 
     private WorldTile GetTile(Vector3Int mouseOnGrid) {
         if (currentSize >= 0) {
             WorldTile lastCard = nextCard;
@@ -76,10 +80,10 @@ public class TileGenerator : MonoBehaviour
         }
     }
 
+    // We add "amount" of cards to the deck clamping the value with maxDeckSize
+    // here we reactivate the backCard
     public void AddCard(int amount) {
         float cardAmount = Mathf.Clamp(amount + currentSize + 1, 0f, maxDeckSize);
-        Debug.Log(cardAmount);
-        Debug.Log(currentSize);
         int test = 0;
         for (int i = currentSize + 1; i < cardAmount; i++) {
             deck[i].SetActive(true);
@@ -88,6 +92,7 @@ public class TileGenerator : MonoBehaviour
         UpdateDeckSizeUI();
     }
 
+    // Return a random card
     private WorldTile GenerateTile() {
        return tiles[Random.Range(0, tiles.Length)];
     }

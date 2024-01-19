@@ -8,6 +8,8 @@ public delegate float CalculateScore(List<WorldTile> adjacentTiles, WorldTile ti
 public delegate void AddCard(int amount);
 public delegate void ShowHelp(WorldTile tile);
 
+// This class manages both tilemaps the previsualization tilemap and the tilemap that stores
+// the map
 public class GridManager : MonoBehaviour
 {
     [SerializeField] private Tilemap tempTilemap;
@@ -28,6 +30,7 @@ public class GridManager : MonoBehaviour
     }
 
 
+    // return the position on the tilemap
     private Vector3Int GetMousePosOnGrid() {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3Int mouseCellPos = worldTilemap.WorldToCell(mousePos);
@@ -35,7 +38,9 @@ public class GridManager : MonoBehaviour
 
         return mouseCellPos;
     }
-    
+
+    // return the position on the tilemap, if it has changed
+    // we remove the tile placed and place a new one
     private void HighlightTile() {
         Vector3Int mouseGridPos = GetMousePosOnGrid();
 
@@ -47,6 +52,10 @@ public class GridManager : MonoBehaviour
 
     }
 
+    // We get mouse position and calculate the adjacent tiles
+    // if there's one, we get a card from the deck with OnGetTile
+    // and we add it to the worldtilemap, we calculate the score and if it's positive
+    // we add cards to the deck otherwise we show the help message to the player
     private void SetTile() {
         if (Input.GetKeyDown(KeyCode.Mouse0)) {
             Vector3Int mouseGridPos = GetMousePosOnGrid();
@@ -69,6 +78,7 @@ public class GridManager : MonoBehaviour
         }
     }
 
+    // Iterate over tiles at right, left, top and bottom
     private List<WorldTile> AdjacentToTiles(Vector3Int mouseGridPos) {
         List<WorldTile> adjacentTiles = new List<WorldTile>();
         for (int x = -1; x <= 1; x += 2) {

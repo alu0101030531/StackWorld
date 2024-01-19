@@ -12,6 +12,7 @@ public class ManageGame : MonoBehaviour
         TileGenerator.OnGameOver += OnGameOver;
     }
 
+    // Once the game finish we load the gameOver scene
     private void OnGameOver() {
         SceneManager.LoadScene(GameOverScene);
     }     

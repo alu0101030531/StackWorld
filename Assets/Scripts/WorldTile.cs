@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+// Custom tiles where we define the negative affinity tiles to this one.
 [CreateAssetMenu(menuName = "GameObject/Tiles")]
 public class WorldTile : AnimatedTile
 {
